@@ -26,6 +26,7 @@ animations, previews, and reports remain separate referenced artifacts.
 ## v0.1 stack
 
 - Node.js 24 LTS, TypeScript, and Fastify
+- `fnm` for Node version management, with `.node-version` committed per repository
 - Svelte 5 and SvelteKit
 - Bits UI only behind the public `@mardwerk/ui` package
 - Plain CSS and CSS custom properties
