@@ -5,10 +5,33 @@ dates or a substitute for repository-level design decisions.
 
 ## Delivery order
 
-1. Implement `mardwerk/foundation`.
-2. Release its `@mardwerk` packages.
-3. Implement `unit-generator` and `map-generator` in parallel against those
-   releases.
+1. Establish the v0 foundation and reference corpus. These initial versions
+   exist; the corpus is still provisional.
+2. Complete the full `unit-generator`. Research for `map-generator` runs in
+   parallel.
+3. Once the unit generator is complete, review its implementation for reusable
+   code and migrate the shared parts into `foundation`. Use the completed
+   UnitSpec to finalize the reference corpus's unit data and contracts.
+4. Develop `map-generator` as its research resolves the implementation
+   direction. This work can proceed in parallel with the foundation migration
+   and corpus finalization, depending on research readiness.
+
+Foundation grows from concrete generator needs. Its initial package release
+is no longer a prerequisite for generator development; local package links
+support the current work, with releases carrying shared changes to consumers.
+
+## Repository responsibilities
+
+- `foundation` owns shared contracts and infrastructure. After the unit
+  generator is complete, it receives the parts identified as reusable.
+- `unit-generator` owns UnitSpec and the full unit generation application.
+  Unit-specific behavior stays here when shared code moves into foundation.
+- `reference-corpus` owns private reference-data tooling and snapshots. Its v0
+  contracts are provisional; UnitSpec guides unit corpus finalization, while
+  map research informs map-specific requirements. Public generators consume
+  exports without depending on the private repository at runtime or in CI.
+- `map-generator` owns map research and the resulting map generation
+  application. Research determines its implementation direction and timing.
 
 Foundation provides:
 
