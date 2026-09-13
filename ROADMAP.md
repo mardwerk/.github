@@ -30,8 +30,14 @@ support the current work, with releases carrying shared changes to consumers.
   contracts are provisional; UnitSpec guides unit corpus finalization, while
   map research informs map-specific requirements. Public generators consume
   exports without depending on the private repository at runtime or in CI.
-- `map-generator` owns map research and the resulting map generation
-  application. Research determines its implementation direction and timing.
+- `map-generator` owns the spatial engine and Map Lab in one FOSS repository.
+  The Lab is the primary human abstraction over explicit engine invocations.
+  Its selected client is Linux-native Python/PySide6 with Qt Widgets. The
+  current bounded grid research remains separate from proposed terrain/world work.
+- `towerright` privately records continuing Series production, accepted World
+  and asset revisions, cross-generator assembly and releases. It calls the
+  generators without becoming their implicit runtime state. The future 3D
+  production product and consuming games retain their own domain contracts.
 
 Foundation provides:
 
@@ -46,7 +52,10 @@ Foundation provides:
 The manifest is a generic bundle envelope. Units, maps, models, textures, rigs,
 animations, previews, and reports remain separate referenced artifacts.
 
-## v0.1 stack
+## Application stacks
+
+The following Node stack applies to the existing web and optional service
+modules. It is not a mandate for every generator or native client.
 
 - Node.js 24 LTS, TypeScript, and Fastify
 - `fnm` for Node version management, with `.node-version` committed per repository
@@ -58,9 +67,12 @@ animations, previews, and reports remain separate referenced artifacts.
 - NATS JetStream durable pull consumers with explicit acknowledgements for
   distributed API/worker execution
 
-Tailwind, Storybook, Python, Rust, Mojo, Kubernetes, Helm, and KEDA are outside
-v0.1. A native compute language is introduced only after profiling identifies
-a bottleneck.
+Map Lab selects Python/PySide6 with Qt Widgets for its native Linux shell;
+its renderer is a separate qualification decision. The current Map Generator
+research also runs in Python. Neither choice requires migrating other products.
+A different native compute language needs a measured bottleneck or a concrete
+interface requirement. Tailwind, Storybook, Rust, Mojo, Kubernetes, Helm and
+KEDA remain outside the original Node v0.1 implementation scope.
 
 ## Deployment boundary
 
@@ -69,9 +81,11 @@ Single host:   SQLite + local artifacts
 Multiple hosts: PostgreSQL + S3-compatible artifacts + NATS JetStream
 ```
 
-Future deployment maps stateless web/API and independently scaled workers to
-Kubernetes, uses KEDA with JetStream lag for autoscaling, and packages the
-system with Helm. v0.1 documents these boundaries but does not implement them.
+For products needing distributed persistent services, future deployment may map
+stateless web/API and independently scaled workers to
+Kubernetes, use KEDA with JetStream lag for autoscaling, and package the
+system with Helm. This remains a future service direction, not a Map Lab
+prerequisite or an implemented platform.
 
 ## Open-source boundary
 
@@ -91,4 +105,6 @@ collaboration. Essential generation remains open source.
 Test contracts and critical flows, not coverage targets. Use deterministic
 fixtures, bounded-repair checks, API/worker lifecycle tests, and one browser
 happy path per generator. Avoid live model calls in CI, broad snapshot suites,
-test-per-field patterns, and exhaustive malformed-input matrices.
+test-per-field patterns, and exhaustive malformed-input matrices. Native Map
+Lab instead needs its own widget/lifecycle tests and real Wayland/X11 checks;
+a browser happy path does not qualify it.

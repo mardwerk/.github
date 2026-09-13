@@ -1,7 +1,8 @@
 # Mardwerk
 
-Mardwerk builds open-source foundations and generators for deterministic game
-content.
+Mardwerk builds open-source foundations and generators for game content.
+Explicit inputs and retained evidence support reproducible operations where
+their contracts establish it; external model generation is not inherently deterministic.
 
 ## Build order
 
@@ -30,17 +31,23 @@ The private `reference-corpus` repository owns reference-data tooling and
 snapshots. Generators consume its exports without requiring the private
 repository at runtime or in CI.
 
-[`map-generator`](https://github.com/mardwerk/map-generator) is currently in
-research. That research determines the map application's design and when
-implementation can proceed.
+[`map-generator`](https://github.com/mardwerk/map-generator) contains the spatial
+engine and Map Lab, its primary human workbench. The admitted research CLI
+handles a bounded 2D grid. The selected next application is a Linux-native
+PySide6/Qt Widgets Lab; terrain and multi-map capabilities require their own
+implementation and acceptance evidence.
+
+The private [`towerright`](https://github.com/mardwerk/towerright) repository
+records continuing production, accepted revisions and cross-generator assembly.
+It is separate from each generator’s explicit-input computation.
 
 ## Direction
 
-- Node.js 24, TypeScript, and Fastify on the backend
-- Svelte 5 and SvelteKit for generator interfaces
+- Node.js 24, TypeScript, and Fastify for the existing Node applications
+- Svelte 5 and SvelteKit for web interfaces; Python/PySide6 with Qt Widgets for native Map Lab
 - Separate referenced artifacts inside a universal bundle envelope
-- Local-first execution with a clear path from SQLite and local files to
-  PostgreSQL, NATS JetStream, and S3-compatible storage
+- Local execution from explicit inputs; optional persistent-service infrastructure
+  where a concrete consumer requires it
 - Apache-2.0 for the foundation; MPL-2.0 for complete generator applications
 
 The detailed technical direction lives in
