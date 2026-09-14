@@ -1,54 +1,19 @@
 # Mardwerk
 
-Mardwerk builds open-source foundations and generators for game content.
-Explicit inputs and retained evidence support reproducible operations where
-their contracts establish it; external model generation is not inherently deterministic.
+Mardwerk builds independently usable generators and local tools for game content, alongside a proprietary production platform. Explicit inputs and retained evidence support reproducible operations where their contracts establish it; external model generation is not inherently deterministic.
 
-## Build order
+The [meta repository](https://github.com/mardwerk/.github) owns the [shared vocabulary](https://github.com/mardwerk/.github/blob/main/CONTEXT.md), [technical direction](https://github.com/mardwerk/.github/blob/main/ROADMAP.md) and [licensing policy](https://github.com/mardwerk/.github/blob/main/LICENSING.md). Product repositories add their own domain contracts.
 
-| Stage | Unit generator, foundation, and reference corpus | Map generator |
-| --- | --- | --- |
-| Starting point | v0 foundation and provisional reference corpus created | |
-| Current work | Build the full unit generator | Research in parallel |
-| After unit completion | Move reusable code into foundation; use UnitSpec to finalize the unit reference corpus | Develop in parallel as research resolves the direction |
+| Repository | Role |
+| --- | --- |
+| [Unit Generator](https://github.com/mardwerk/unit-generator) | MIT unit generation engine and CLI, with UnitLab as its local human interface. |
+| [Map Generator](https://github.com/mardwerk/map-generator) | MIT spatial engine and CLI, plus GPL-3.0-only MapLab in one repository. The selected desktop uses PySide6/Qt Widgets and Qt Quick 3D. |
+| [Foundation](https://github.com/mardwerk/foundation) | Optional existing Apache-2.0 artifact helpers, model transport and web controls. A package dependency is not required to share vocabulary. |
+| Reference Corpus, private | Captured references, provenance, qualified snapshots and explicit exports. |
+| [Towerright](https://github.com/mardwerk/towerright), private | Proprietary cross-generator production, retained revisions, review and service coordination. |
 
-Map development depends on research readiness and can overlap the foundation
-migration and corpus finalization.
+Map Generator currently admits a bounded 2D research workflow. The approved native Lab, terrain generation and consecutive maps from one World are being developed against explicit qualification steps. Local graphics and compute trials inform the MVP; they do not establish a completed world generator.
 
-## Repositories
+The Labs and Towerright call generators independently. Essential generation remains in the public engines. The future 3D production product and consuming games retain separate contracts; listing or transferring a legacy repository does not change its license.
 
-[`foundation`](https://github.com/mardwerk/foundation) owns the shared manifest,
-generator SDK, service/runtime adapters, model client, and Svelte UI. It will
-receive reusable code identified after the unit generator is complete.
-Generators use its packages through local links during development and
-versioned releases as they become available.
-
-[`unit-generator`](https://github.com/mardwerk/unit-generator) owns UnitSpec and
-the full unit generation application. Its completed specification will guide
-finalization of the private reference corpus's unit data and contracts.
-
-The private `reference-corpus` repository owns reference-data tooling and
-snapshots. Generators consume its exports without requiring the private
-repository at runtime or in CI.
-
-[`map-generator`](https://github.com/mardwerk/map-generator) contains the spatial
-engine and Map Lab, its primary human workbench. The admitted research CLI
-handles a bounded 2D grid. The selected next application is a Linux-native
-PySide6/Qt Widgets Lab; terrain and multi-map capabilities require their own
-implementation and acceptance evidence.
-
-The private [`towerright`](https://github.com/mardwerk/towerright) repository
-records continuing production, accepted revisions and cross-generator assembly.
-It is separate from each generator’s explicit-input computation.
-
-## Direction
-
-- Node.js 24, TypeScript, and Fastify for the existing Node applications
-- Svelte 5 and SvelteKit for web interfaces; Python/PySide6 with Qt Widgets for native Map Lab
-- Separate referenced artifacts inside a universal bundle envelope
-- Local execution from explicit inputs; optional persistent-service infrastructure
-  where a concrete consumer requires it
-- Apache-2.0 for the foundation; MPL-2.0 for complete generator applications
-
-The detailed technical direction lives in
-[ROADMAP.md](https://github.com/mardwerk/.github/blob/main/ROADMAP.md).
+Foundation grows only from demonstrated shared needs. Current consumers still use its manifest and Svelte UI; legacy service/SDK code is not the required architecture for every product. Node/Svelte web applications and the Qt desktop can coexist without a universal UI or orchestration framework.

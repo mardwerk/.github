@@ -1,110 +1,41 @@
 # Technical direction
 
-This records the current v0.1 constraints. It is a direction, not a promise of
-dates or a substitute for repository-level design decisions.
+Updated 2026-09-13. This records selected responsibilities and the next work, not delivered capabilities or a schedule. Repository designs own their actual interfaces and evidence. The [shared glossary](CONTEXT.md) and [licensing policy](LICENSING.md) live here in the organization meta repository.
 
-## Delivery order
+## Delivery direction
 
-1. Establish the v0 foundation and reference corpus. These initial versions
-   exist; the corpus is still provisional.
-2. Complete the full `unit-generator`. Research for `map-generator` runs in
-   parallel.
-3. Once the unit generator is complete, review its implementation for reusable
-   code and migrate the shared parts into `foundation`. Use the completed
-   UnitSpec to finalize the reference corpus's unit data and contracts.
-4. Develop `map-generator` as its research resolves the implementation
-   direction. This work can proceed in parallel with the foundation migration
-   and corpus finalization, depending on research readiness.
+Develop the independently usable generators and their local human tools around explicit inputs and inspectable results. Map Generator's next application is the approved Qt workbench: PySide6/Qt Widgets plus Qt Quick 3D, separate generation workers, bounded terrain display and source-linked inspection. Its current admitted implementation is still a bounded 2D research CLI; local desktop experiments are not a completed terrain MVP.
 
-Foundation grows from concrete generator needs. Its initial package release
-is no longer a prerequisite for generator development; local package links
-support the current work, with releases carrying shared changes to consumers.
+Unit Generator evolves its own Definition and generation contracts. Reference Corpus supplies qualified exports and provenance without becoming a private runtime or CI prerequisite for public generators. Work can proceed in parallel as each product's evidence and dependencies permit.
+
+Foundation remains one optional package workspace. Retain shared behavior because current callers need it; do not automatically migrate code there after a generator is complete. Its existing manifest and web UI have sibling consumers, and Unit Generator setup still builds model-client. SDK/service-kit remain legacy optional modules. Their source and examples are retained while default adoption and routine release expectations are removed. See [Foundation scope](https://github.com/mardwerk/foundation/blob/main/docs/scope.md).
 
 ## Repository responsibilities
 
-- `foundation` owns shared contracts and infrastructure. After the unit
-  generator is complete, it receives the parts identified as reusable.
-- `unit-generator` owns UnitSpec and the full unit generation application.
-  Unit-specific behavior stays here when shared code moves into foundation.
-- `reference-corpus` owns private reference-data tooling and snapshots. Its v0
-  contracts are provisional; UnitSpec guides unit corpus finalization, while
-  map research informs map-specific requirements. Public generators consume
-  exports without depending on the private repository at runtime or in CI.
-- `map-generator` owns the spatial engine and Map Lab in one FOSS repository.
-  The Lab is the primary human abstraction over explicit engine invocations.
-  Its selected client is Linux-native Python/PySide6 with Qt Widgets. The
-  current bounded grid research remains separate from proposed terrain/world work.
-- `towerright` privately records continuing Series production, accepted World
-  and asset revisions, cross-generator assembly and releases. It calls the
-  generators without becoming their implicit runtime state. The future 3D
-  production product and consuming games retain their own domain contracts.
+| Repository | Ownership |
+| --- | --- |
+| `.github` meta | Canonical shared vocabulary, repository discovery, cross-product direction, licensing policy, public profile and brand references. No shared application runtime. |
+| `foundation` | Optional artifact envelope/verification, model transport and Svelte controls with demonstrated consumers. Legacy HTTP job/runtime modules do not define product lifecycles. |
+| `unit-generator` | MIT unit engine, CLI, Definitions, validation and current UnitLab. Unit-specific mechanics stay here. |
+| `map-generator` | MIT spatial engine, CLI and independent contracts, plus GPL-3.0-only MapLab in the same repository. World/Map generation and validation remain engine responsibilities as implemented. |
+| `reference-corpus` | Private capture, snapshots, qualification and domain exports with source-specific rights. |
+| `towerright` | Proprietary continuing Series production, accepted World/asset revisions, cross-generator workflows, scheduling and future service operation. Calls engines independently of Labs. |
+| Future 3D product and game consumers | Separate producer/consumer contracts and subprojects. Existing legacy repositories retain their current terms and scope until transfer/refactoring is separately executed. |
 
-Foundation provides:
-
-- `@mardwerk/manifest`
-- `@mardwerk/generator-sdk`
-- `@mardwerk/service-kit`
-- `@mardwerk/model-client`
-- `@mardwerk/ui`
-- `apps/ui-lab`
-- `examples/reference-generator`
-
-The manifest is a generic bundle envelope. Units, maps, models, textures, rigs,
-animations, previews, and reports remain separate referenced artifacts.
+Domain glossaries remain in their product repositories. A common word does not require one serialized schema or runtime. The generic Foundation manifest is optional and does not silently replace Map Generator's existing research publication format. Maps, units, models, textures, rigs, animations, previews and findings retain producer-specific meaning.
 
 ## Application stacks
 
-The following Node stack applies to the existing web and optional service
-modules. It is not a mandate for every generator or native client.
+The existing Node applications use Node.js 24, TypeScript, Fastify where needed, Svelte 5/SvelteKit and ordinary CSS. Native MapLab selects Python/PySide6, Qt Widgets and Qt Quick 3D. The generator's compute implementation can evolve independently when a measured bottleneck justifies it. Rust/wgpu remains retained experimental evidence, not a second MapLab application to maintain. Neither the desktop toolkit nor its language dictates Towerright's platform stack.
 
-- Node.js 24 LTS, TypeScript, and Fastify
-- `fnm` for Node version management, with `.node-version` committed per repository
-- Svelte 5 and SvelteKit
-- Bits UI only behind the public `@mardwerk/ui` package
-- Plain CSS and CSS custom properties
-- Server-side `node:sqlite`
-- Inline jobs for tests, CLI use, and the smallest local mode
-- NATS JetStream durable pull consumers with explicit acknowledgements for
-  distributed API/worker execution
+SQLite/local artifacts and NATS/JetStream adapters exist in Foundation's legacy service example. They are not an ecosystem-wide execution requirement. Towerright should choose persistence, queues, hosting and scaling after proving its first actual production workflow; Kubernetes, Helm and KEDA are not prerequisites for local generation or the Lab MVP.
 
-Map Lab selects Python/PySide6 with Qt Widgets for its native Linux shell;
-its renderer is a separate qualification decision. The current Map Generator
-research also runs in Python. Neither choice requires migrating other products.
-A different native compute language needs a measured bottleneck or a concrete
-interface requirement. Tailwind, Storybook, Rust, Mojo, Kubernetes, Helm and
-KEDA remain outside the original Node v0.1 implementation scope.
+## Licensing and dependency direction
 
-## Deployment boundary
+MIT engines and execution contracts are reusable independently. MapLab accepts GPL-3.0-only application distribution so the MVP can use the qualified Qt workbench. Its local workspace, run/cancel and inspection behavior stay in the application; generation rules must not acquire a Qt or GPL-only Lab dependency. Towerright remains a separate proprietary caller of the engines.
 
-```text
-Single host:   SQLite + local artifacts
-Multiple hosts: PostgreSQL + S3-compatible artifacts + NATS JetStream
-```
+Unit Generator's original code is MIT. Existing Foundation packages remain Apache-2.0 with their notices. Reference content and generated/supplied assets retain their own terms. Future 3D/game repository transfers do not enact relicensing. The [scope policy](LICENSING.md) supersedes older MPL generator roadmaps and records the meta glossary's retained Apache provenance.
 
-For products needing distributed persistent services, future deployment may map
-stateless web/API and independently scaled workers to
-Kubernetes, use KEDA with JetStream lag for autoscaling, and package the
-system with Helm. This remains a future service direction, not a Map Lab
-prerequisite or an implemented platform.
+## Verification
 
-## Open-source boundary
-
-- Foundation: Apache-2.0
-- Unit Generator: MPL-2.0, including complete single-unit generation, upgrade
-  graphs, validation, bounded repair, local UI/API/CLI/worker, and artifacts
-- Map Generator: MPL-2.0, including continuous worlds, connectivity and
-  traversal, terrain, scoring, bounded repair, local UI/API/CLI/worker,
-  previews, and artifacts
-
-Future hosted or proprietary products may add orchestration, cross-generator
-analysis, expensive ranking, production asset libraries, integrations, and
-collaboration. Essential generation remains open source.
-
-## Testing
-
-Test contracts and critical flows, not coverage targets. Use deterministic
-fixtures, bounded-repair checks, API/worker lifecycle tests, and one browser
-happy path per generator. Avoid live model calls in CI, broad snapshot suites,
-test-per-field patterns, and exhaustive malformed-input matrices. Native Map
-Lab instead needs its own widget/lifecycle tests and real Wayland/X11 checks;
-a browser happy path does not qualify it.
+Test contracts and critical flows with bounded deterministic fixtures where appropriate. Qualify actual generation outcomes separately from source fidelity, gameplay quality and external-model reproducibility. Native MapLab needs process lifecycle, source correspondence, real materials, chunk/LOD behavior and real Wayland interaction evidence; a browser happy path or bare terrain benchmark does not establish the finished application. Keep source, display, collision and navigation authority distinct.
