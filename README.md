@@ -2,6 +2,11 @@
 
 This is GitHub's special organization repository. It contains the public profile, brand assets and security policy.
 
-The Mardwerk ecosystem structure and shared language live in [Foundation](https://github.com/mardwerk/foundation). Product repositories own their domain documentation and code. This repository contains no shared runtime, contracts or vocabulary source.
+The private ecosystem guide and shared vocabulary live in [Foundation](https://github.com/mardwerk/foundation). Product repositories own their code and domain documentation. This repository contains no runtime, contracts or product implementation.
 
-Brand sources and ready-to-use exports live in [assets/brand](assets/brand).
+| Link | Purpose |
+| --- | --- |
+| [Towerright](https://github.com/mardwerk/towerright) | Private production platform |
+| [Map Generator](https://github.com/mardwerk/map-generator) | Standalone map tool |
+| [Unit Generator](https://github.com/mardwerk/unit-generator) | Standalone unit tool |
+| [Brand assets](assets/brand) | Organization visuals |

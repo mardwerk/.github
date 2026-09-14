@@ -1,12 +1,10 @@
 # Mardwerk
 
-Mardwerk builds independent tools for creating and using game content.
-
-The [Foundation](https://github.com/mardwerk/foundation) repository documents the ecosystem structure and shared language. Product repositories own their engines, command-line interfaces, human applications and domain contracts.
+Mardwerk builds independent tools for creating Tower Defense game content. [Foundation](https://github.com/mardwerk/foundation) defines the shared vocabulary and boundaries. [Towerright](https://github.com/mardwerk/towerright) coordinates the private production workflow.
 
 | Product | Role |
 | --- | --- |
-| [Unit Generator](https://github.com/mardwerk/unit-generator) | Unit content tool |
-| [Map Generator](https://github.com/mardwerk/map-generator) | Spatial content tool |
-| [Foundation](https://github.com/mardwerk/foundation) | Ecosystem guide |
-| Towerright | Production platform |
+| [Towerright](https://github.com/mardwerk/towerright) | Private production platform |
+| [Unit Generator](https://github.com/mardwerk/unit-generator) | Standalone unit tool |
+| [Map Generator](https://github.com/mardwerk/map-generator) | Standalone map tool |
+| [Foundation](https://github.com/mardwerk/foundation) | Private ecosystem guide |
