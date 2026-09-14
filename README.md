@@ -2,11 +2,14 @@
 
 This is GitHub's special organization repository. It contains the public profile, brand assets and security policy.
 
-The private ecosystem guide and shared vocabulary live in [Foundation](https://github.com/mardwerk/foundation). Product repositories own their code and domain documentation. This repository contains no runtime, contracts or product implementation.
+[Foundation](https://github.com/mardwerk/foundation) owns the private ecosystem vocabulary and repository rules. Product repositories own their code and domain documentation.
 
-| Link | Purpose |
-| --- | --- |
-| [Towerright](https://github.com/mardwerk/towerright) | Private production platform |
-| [Map Generator](https://github.com/mardwerk/map-generator) | Standalone map tool |
-| [Unit Generator](https://github.com/mardwerk/unit-generator) | Standalone unit tool |
-| [Brand assets](assets/brand) | Organization visuals |
+## Contents
+
+- [profile/README.md](profile/README.md) is the public organization profile.
+- [assets/brand](assets/brand) contains brand sources and exports.
+- [SECURITY.md](SECURITY.md) describes vulnerability reporting.
+- [CONTEXT.md](CONTEXT.md) defines this repository's role.
+- [AGENTS.md](AGENTS.md) defines editing rules.
+
+This repository contains no runtime code, product contracts or shared vocabulary.
