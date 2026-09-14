@@ -5,10 +5,11 @@ Read [README.md](README.md) and [CONTEXT.md](CONTEXT.md) before editing this rep
 ## Rules
 
 - Limit changes to organization profile, branding and security metadata.
-- Link to Foundation and product repositories for architecture and vocabulary.
-- Keep secrets and product implementation out of this repository.
+- Use clear file names that describe the metadata they contain.
+- Keep each file focused on one responsibility.
+- Keep secrets, product implementation and private policy out of this repository.
 - Keep public profile wording concise and product-neutral.
 
 ## Completion
 
-Before committing, confirm that profile links work, no product policy was copied here, and `git diff --check` passes.
+Before committing, confirm that profile links work, no private policy was copied here, and `git diff --check` passes.

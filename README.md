@@ -2,7 +2,7 @@
 
 This is GitHub's special organization repository. It contains the public profile, brand assets and security policy.
 
-[Foundation](https://github.com/mardwerk/foundation) owns the private ecosystem vocabulary and repository rules. Product repositories own their code and domain documentation.
+Foundation and Towerright are private repositories. Foundation owns the internal ecosystem vocabulary and repository rules. Product repositories own their code and domain documentation.
 
 ## Contents
 
