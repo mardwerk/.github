@@ -1,10 +1,9 @@
 # Mardwerk
 
-Mardwerk builds independent Tools for creating Tower Defense game content. Foundation defines shared terms and boundaries. Towerright coordinates the private production workflow.
+Mardwerk builds independent Tools for creating Tower Defense game content. Each Tool's repository documents its own terms and contracts. Towerright is the planned private production workflow.
 
 | Product | Role |
 | --- | --- |
-| Towerright | Private production platform |
+| Towerright | Private production platform, planned |
 | Unit Generator | Standalone unit Tool |
-| Map Generator | Standalone map Tool |
-| Foundation | Private ecosystem guide |
+| Map Generator | Standalone map Tool, planned |
