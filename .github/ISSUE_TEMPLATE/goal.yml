@@ -1,0 +1,24 @@
+name: Goal
+description: A goal of the roadmap. Open it with "Create sub-issue" on the roadmap issue, so it lands under it.
+body:
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What this goal is for, and why now.
+    validations:
+      required: true
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: What is true when the goal is reached, so a reviewer can check a PR against it. One point per line, each starting with "- ".
+    validations:
+      required: true
+  - type: textarea
+    id: not-part-of-it
+    attributes:
+      label: Not part of it
+      description: What a PR toward this goal must leave alone.
+    validations:
+      required: true
