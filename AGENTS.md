@@ -1,6 +1,6 @@
 # Agent instructions
 
-Read [README.md](README.md) before editing this repository. Mardwerk agents with Planning access also follow Planning's [agent instructions](https://github.com/mardwerk/planning/blob/main/AGENTS.md) and [shared vocabulary](https://github.com/mardwerk/planning/blob/main/CONTEXT.md).
+Read [README.md](README.md) before editing this repository. Mardwerk agents with Planning access also follow Planning's [agent instructions](https://github.com/mardwerk/planning/blob/main/AGENTS.md) and [shared vocabulary](https://github.com/mardwerk/planning/blob/main/GLOSSARY.md).
 
 ## Rules
 
